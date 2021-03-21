@@ -127,7 +127,6 @@ form {
     grid-area: footer;
 }
 
-//Pildoras de fondo
 .pill {
     @include soma;
     position: absolute;
@@ -136,7 +135,6 @@ form {
     z-index: -1;
 }
 
-//Media querie para pantallas menores a 799 pixeles
 @media only screen and (max-device-width: 799px) {
     html,
     body {
