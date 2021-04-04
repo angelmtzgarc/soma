@@ -1,0 +1,189 @@
+//Dibujo de la pildora
+@mixin soma {
+    border-radius: 45%;
+    background: linear-gradient( #fffefe 50%, #9198e5 50%);
+    border: 0.5em solid #9198e5;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #fffefe;
+}
+
+//Contenedor del grid principal
+.container {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    grid-template-rows: 10vh 80vh 10vh;
+    grid-template-areas: "navbar navbar" "description order" "footer footer";
+}
+
+//Navegacion
+.navbar {
+    padding-left: 50px;
+    grid-area: navbar;
+    padding-top: 25px;
+    li {
+        display: inline;
+        list-style-type: none;
+        padding-left: 50px;
+    }
+    a {
+        font-size: 3vh;
+        text-decoration: none;
+        color: black;
+    }
+    a:hover {
+        color: blue;
+    }
+}
+
+//Logo central para pantallas de celular
+.logo {
+    display: none;
+}
+
+//Descipcion del producto
+.description {
+    grid-area: description;
+    text-align: center;
+    //Z-index para estar encima de las animaciones
+    z-index: 1000;
+    //Titulo
+    .soma {
+        font-size: 8vmin;
+        font-weight: bolder;
+        padding: 10%;
+    }
+    //Descripcion
+    .text-description {
+        font-size: 4vmin;
+        font-weight: bolder;
+    }
+}
+
+//Contenedor de la forma para pedir el producto
+.order {
+    grid-area: order;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    p {
+        font-size: 5vh;
+    }
+}
+
+//Forma
+form {
+    @include soma;
+    width: 300px;
+    height: 500px;
+    margin: 50px;
+    padding: 60px;
+    top: 200px;
+    font-weight: bold;
+    font-size: 20px;
+    .form-control {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        position: relative;
+        input {
+            margin: auto;
+            border: 2px solid #000;
+            border-radius: 5px;
+            display: block;
+            font-family: inherit;
+            font-size: 12px;
+            padding: 5px;
+            width: 80%;
+        }
+        input:focus {
+            outline: 0;
+            border-color: #777;
+        }
+    }
+    //Boton de submit
+    .btn {
+        width: 100px;
+        background-color: #fffefe;
+        border-radius: 5px;
+    }
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.pill {
+    @include soma;
+    position: absolute;
+    width: 5vh;
+    height: 10vh;
+    z-index: -1;
+}
+
+@media only screen and (max-device-width: 799px) {
+    html,
+    body {
+        height: 200vh;
+        width: 100%;
+    }
+    .container {
+        position: fixed;
+        padding: 0;
+        margin: 0;
+        overflow: scroll;
+        grid-template-columns: 100%;
+        grid-template-areas: "navbar" "description" "order" "footer";
+    }
+    .pill-0 {
+        @include soma;
+        width: 5vw;
+        height: 10vw;
+    }
+    .pill {
+        display: none;
+    }
+    .description {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .order {
+        height: 130vw;
+    }
+    form {
+        margin: 0;
+        padding: 0;
+        width: 80vw;
+        height: 120vw;
+        box-shadow: none;
+        font-size: 40px;
+        border-radius: 0;
+        background: #fffefe;
+        border: 20px solid #9198e5;
+        box-shadow: none;
+        .btn {
+            width: 200px;
+            height: 50px;
+        }
+    }
+    form input {
+        width: 60vw;
+        height: 5vw;
+    }
+}
